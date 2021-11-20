@@ -6,23 +6,43 @@ class Solution:
         
         stack = []
         
-        for char in s:
-            if (char == '(' or char == '{' or char == '['):
-                stack.append(char)
-            if (char == ')' or char == '}' or char == ']'):
-                if (len(stack) == 0):
-                    return False
-            if (char == ')'):
-                if (stack[-1] != '('):
-                    return False
-                stack = stack[:-1]
-            if (char == '}'):
-                if (stack[-1] != '{'):
-                    return False
-                stack = stack[:-1]
-            if (char == ']'):
-                if (stack[-1] != '['):
-                    return False
-                stack = stack[:-1]
+        # Using Stack With Dictionary
         
-        return len(stack) == 0
+        dict = {'{': '}', '(': ')', '[': ']'}
+        
+        for char in s:
+            if char in dict.keys():
+                stack.append(char)
+            elif char in dict.values():
+                if (stack == []):
+                    return False
+                else:
+                    recent = stack.pop()
+                    if (dict[recent] != char):
+                        return False
+                
+        return (stack == [])
+        
+        
+        # Using Stack Without Dictionary
+        
+#         for char in s:
+#             if (char == '(' or char == '{' or char == '['):
+#                 stack.append(char)
+#             else:
+#                 if (len(stack) == 0):
+#                     return False
+#                 elif (char == ')'):
+#                     if (stack[-1] != '('):
+#                         return False
+#                     stack = stack[:-1]
+#                 elif (char == '}'):
+#                     if (stack[-1] != '{'):
+#                         return False
+#                     stack = stack[:-1]
+#                 elif (char == ']'):
+#                     if (stack[-1] != '['):
+#                         return False
+#                     stack = stack[:-1]
+
+#         return len(stack) == 0
