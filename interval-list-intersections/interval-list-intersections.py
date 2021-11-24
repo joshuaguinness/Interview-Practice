@@ -12,9 +12,11 @@ class Solution:
             # Gets the end of possible intersection
             higher = min(firstList[i][1], secondList[j][1])
             
+            # If start <= end, then there is an intersection
             if lower <= higher:
                 result.append([lower, higher])
-                
+               
+            # Move to the next interval based on who has smallest endpoint
             if (firstList[i][1] < secondList[j][1]):
                 i += 1
             else:
