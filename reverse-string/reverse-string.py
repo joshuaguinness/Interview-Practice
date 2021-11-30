@@ -2,6 +2,9 @@ import numpy as nmp
 
 class Solution:
     def reverseString(self, s: List[str]) -> None:
+        # Could just do below line, but same runtime and space as below
+        # s.reverse()
+        
         i = 0
         
         # If odd number
@@ -21,4 +24,3 @@ class Solution:
         """
         Do not return anything, modify s in-place instead.
         """
-        
