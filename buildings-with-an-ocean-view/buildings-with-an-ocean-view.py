@@ -10,5 +10,4 @@ class Solution:
                 buildings_set.add(length_heights-i)
                 max_height = heights[-i]
                 
-            
         return sorted(buildings_set)
