@@ -3,7 +3,8 @@ class Solution:
         
         # Iterate through the array
         # Add to a new array the distance
-        # then return max(distance array) k times
+        # Sort the array based on distance
+        # Return the first element of the array k times, popping the first element each time
         
         distances = []
         
@@ -17,7 +18,3 @@ class Solution:
             distances.pop(0)
             
         return min_distances
-            
-        
-        
-        
