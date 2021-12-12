@@ -11,21 +11,21 @@ class Node:
 class Solution:
     def lowestCommonAncestor(self, p: 'Node', q: 'Node') -> 'Node':
         
-        parents = []
+        parents = set()
         
         def parentBack1(node):
-            parents.append(node.val)
-            if node.parent != None:
+            parents.add(node.val)
+            if node.parent:
                 parentBack1(node.parent)
         
         def parentBack2(node):
             if node.val in parents:
                 return node
-            if node.parent != None:
+            if node.parent:
                 return parentBack2(node.parent)
             return
             
         parentBack1(p)
-        print(parents)
-        lca = parentBack2(q)
-        return lca
+        return parentBack2(q)
+    
+# There are other simpler ways if I checked the discussion
