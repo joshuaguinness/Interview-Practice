@@ -15,6 +15,3 @@ class Solution:
                     stack.pop()
         
         return count + len(stack)
-        
-        # (())(()()
-        
