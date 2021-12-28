@@ -7,53 +7,32 @@ class Solution:
         
         i = 0 # Iterator for word
         j = 0 # Iterator for abbr
+        n = len(word)
+        m = len(abbr)
         
-        while i < len(word) and j < len(abbr):
+        while i < n and j < m:
             
-            print(i, j)
-            print(word[i], abbr[j])
+            # Leading zeros and empty substring
+            if abbr[j] == "0":
+                return False
             
-            if abbr[j].isdigit():
+            # Match properly
+            elif word[i] == abbr[j]:
+                i += 1
+                j += 1
                 
-                # Leading zeros and empty substring
-                if int(abbr[j]) == 0:
-                    return False
-                
-                if j < len(abbr)-1:
-                    if abbr[j+1].isdigit():
-                        jump = int(abbr[j:j+2])
-                        if (jump > len(word) - i):
-                            return False
-                        i += jump
-                        j += 2
-                    else:
-                        i += int(abbr[j])
-                        j += 1
-                else:
-                    i += int(abbr[j])
-                    j += 1
+            # Digits encounterd
+            elif abbr[j].isdigit():
+                k = j
+                # Iterate until no longer any digits
+                while k < m and abbr[k].isdigit():
+                        k += 1
                     
-            if (i >= len(word)):
-                if (i - len(word) == j - len(abbr)):
-                    return True
-                else:
-                    return False
-                
-            if (j >= len(abbr) and i < len(word)):
-                return False
-                
-                
-            if word[i] != abbr[j]:
-                return False
-        
-            i += 1
-            j += 1
-
-        if (len(abbr)) > j:
-            return False
-        
-        if (len(word)) > i:
-            return False
+                # Add number to i, add number of digits to j
+                i += int(abbr[j:k])
+                j = k
             
-        return True
-        
+            else:
+                return False
+            
+        return i == n and j == m
