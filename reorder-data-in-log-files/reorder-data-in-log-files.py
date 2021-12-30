@@ -18,15 +18,6 @@ class Solution:
                 letter_array.append(log)
                 
         # Sort the letter logs in alphabetical order by their contents
-        letter_array.sort(key=lambda x: (' '.join(x.split(' ')[1:]), x.split(' ')[0]))
-        
-        # For identical letter conents, sort by identifier
-        # i = 0
-        # while i < len(letter_array)-1:
-        #     while (letter_array[i].split(' ')[1:] == letter_array[i+1].split(' ')[1:]):
-                
-                
-        
+        letter_array.sort(key=lambda x: (' '.join(x.split(' ')[1:]), x.split(' ')[0]))                     
         # Combine the two arrays and return
         return letter_array + digit_array
-        
