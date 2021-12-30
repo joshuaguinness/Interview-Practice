@@ -1,26 +1,24 @@
 class Solution:
     def simplifyPath(self, path: str) -> str:
         
+        # Add all elements to a queue
         queue = deque([])
-        queue.append('/')
         
+        # Split at '/'
         path_list = path.split('/')
-        recent = ''
         
+        # Iterate through the list and do actions
         for i, v in enumerate(path_list):
-            if v == '':
+            # Do nothing
+            if v == '' or v == '.':
                 continue
-            elif v == '.':
-                continue
+            # Pop from queue as long as stack exists
             elif v == '..':
-                if len(queue) > 1:
+                if len(queue) >= 1:
                     queue.pop()
-                    queue.pop()
+            # Add element to queue
             else:
                 queue.append(v)
-                queue.append('/')
-                
-        if len(queue) > 1 and queue[-1] == '/':
-            queue.pop()
         
-        return ''.join(queue)
+        # Return a '/' + queue with '/' in between each element
+        return '/' + '/'.join(queue)
