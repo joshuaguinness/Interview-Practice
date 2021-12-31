@@ -1,31 +1,55 @@
 class Solution:
     def groupStrings(self, strings: List[str]) -> List[List[str]]:
         
+        # Main Idea:
+        # Shift each string so that its first value is 'a'
+        # If that reference_string exists in the dictionary
+        # then append to it, if not, create the entry
+        
+        # Dictionary of groups of strings
         groups = {}
 
+        # Iterate through each string
         for string in strings:
-            new_string = 'a'
-            i = 1
+            
+            # Initialize the reference string creation
+            reference_string = 'a'
+            
+            # Length of string is 1
             if len(string) == 1:
                 if 'a' in groups:
                     groups['a'].append(string)
                 else:
                     groups['a'] = [string]
+            
             else:
+                i = 1
+                # Iterate through each char in the string
+                # starting with the second one
                 while i < len(string):
-                    print(string, ord(string[i]), ord(string[i-1]))
-                    number = ord(string[i]) - ord(string[0])
-                    if number < 0: 
-                        number = 123 + number
-                        new_string += chr(number)
+                    
+                    # Difference between current char and base char
+                    diff = ord(string[i]) - ord(string[0])
+                    
+                    # current comes before base character
+                    if diff < 0:
+                        
+                        # Start backwards from the alphabet, 
+                        # z is 122
+                        diff = 123 + diff
+                        reference_string += chr(diff)
+                        
                     else:
-                        new_string += chr(ord('a') + number)
+                        
+                        # Add the diff + ord(a) to the reference_string
+                        reference_string += chr(ord('a') + diff)
                     i += 1
 
-                if new_string in groups:
-                    groups[new_string].append(string)
+                # Check if exists in dictionary. If true append,
+                # if not, create a new entry
+                if reference_string in groups:
+                    groups[reference_string].append(string)
                 else:
-                    groups[new_string] = [string]
+                    groups[reference_string] = [string]
         
-        print(groups.values())
         return groups.values()
