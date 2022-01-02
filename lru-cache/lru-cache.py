@@ -14,10 +14,8 @@ class LRUCache:
     
     # Delete a node from the Linked List
     def _deleteLL(self, node):
-        p = node.prev
-        n = node.next
-        p.next = n
-        n.prev = p
+        node.prev.next = node.next
+        node.next.prev = node.prev
         
     # Adds a node to the end of Linked List
     def _addLL(self, node):
@@ -33,7 +31,6 @@ class LRUCache:
         self.head = Node(0, 0)
         self.tail = Node(0, 0)
         self.my_dict = {}
-        
         self.head.next = self.tail
         self.tail.prev = self.head
         
@@ -45,6 +42,7 @@ class LRUCache:
             
         # Key exists already
         node = self.my_dict[key]
+        
         # Delete from LL, then add again
         # Need to do that because adding it
         # Adds it to the tail making it most
@@ -78,8 +76,6 @@ class LRUCache:
                 self._addLL(node)
                 self.my_dict[key] = node
             
-            
-
 # Your LRUCache object will be instantiated and called as such:
 # obj = LRUCache(capacity)
 # param_1 = obj.get(key)
