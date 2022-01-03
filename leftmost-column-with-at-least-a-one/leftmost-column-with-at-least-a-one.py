@@ -40,12 +40,17 @@ class Solution:
             # to find it
             else:
                 index = binarySearch(i, 0, cols-1)
-                
                 # Keep track of current minimum only
                 leftmost = min(leftmost, index)
         
-        # No 1's
+        # If leftmost is number of columns, this is because it was all 0's.
         if leftmost == cols:
             return -1
         else:
             return leftmost
+
+        
+# Possible optimization:
+# Use leftmost as rightside bound so that aren't doing binary search on the entire row
+# I tried it and it didn't seem to speed it up by much, maybe test cases just don't
+# have massive binaryMatrix
