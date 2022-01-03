@@ -3,11 +3,8 @@ class Solution:
         stack = []
         
         for i, v in enumerate(s):
-            if not stack:
-                stack.append(v)
-                continue
                 
-            if v == stack[-1]:
+            if stack and v == stack[-1]:
                 stack.pop()
                 continue
                 
