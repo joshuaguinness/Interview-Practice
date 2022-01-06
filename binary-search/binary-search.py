@@ -7,7 +7,6 @@ class Solution:
         while l < r:
             mid = (l + r) // 2
             
-            print(mid)
             if nums[mid] == target:
                 return mid
             
