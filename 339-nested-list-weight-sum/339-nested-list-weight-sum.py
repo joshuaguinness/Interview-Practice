@@ -45,28 +45,52 @@ class Solution:
     def depthSum(self, nestedList: List[NestedInteger]) -> int:
         
         result = 0
+        # Add all the level 1 lists/integers to the queue
+        # Faster to do it like this instead of with a loop
+        # since it just ends up being the exact same in the end
         queue = deque(nestedList)
         level = 1
-        
-        # Add the level 1 lists/integers to the queue
+        # Number of items at the first level
         length = len(nestedList)
+        
+        # Loop method of adding lists/integers to the queue
         # for i in range(length):
         #     queue.append(nestedList[i])
 
         # BFS w/ Queue
         while queue:
+            
+            # The numbers of items in the next level
             next_length = 0
+            
+            # Iterate through the number of items at the current level
             for i in range(length):
-                new_list = queue.popleft()
-                if new_list.isInteger():
-                    result += level * new_list.getInteger()
+                
+                # Pop the element from the queue
+                element = queue.popleft()
+                
+                # If its an integer, add the level * integer to the result
+                if element.isInteger():
+                    result += level * element.getInteger()
+                
+                # Its a list
                 else:
-                    curr_length = len(new_list.getList())
+                    
+                    # Get the list and its length
+                    new_list = element.getList()
+                    curr_length = len(new_list)
+                    
+                    # Add current length to the next_length
+                    # which is the number of items in the next level
                     next_length += curr_length
+                    
+                    # Add each item in the list to the queue
                     for j in range(curr_length):
-                        queue.append(new_list.getList()[j])
+                        queue.append(new_list[j])
+            
+            # Increase level by 1 and reassign the number of items
+            # to reflect the new number of items in the next level
             level += 1
             length = next_length
 
-            
         return result
