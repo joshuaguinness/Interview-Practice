@@ -45,19 +45,16 @@ class Solution:
     def depthSum(self, nestedList: List[NestedInteger]) -> int:
         
         result = 0
-        queue = deque([])
+        queue = deque(nestedList)
         level = 1
         
+        # Add the level 1 lists/integers to the queue
         length = len(nestedList)
-        for i in range(length):
-            queue.append(nestedList[i])
+        # for i in range(length):
+        #     queue.append(nestedList[i])
 
-        # BFS
+        # BFS w/ Queue
         while queue:
-            # print(queue)            
-            # print(level)
-            # print(length)
-            # print(result)
             next_length = 0
             for i in range(length):
                 new_list = queue.popleft()
