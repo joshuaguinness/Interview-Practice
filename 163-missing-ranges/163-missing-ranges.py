@@ -1,33 +1,6 @@
 class Solution:
     def findMissingRanges(self, nums: List[int], lower: int, upper: int) -> List[str]:
         
-#         missing = []
-#         start_miss = lower - 1
-#         end_miss = lower - 1
-#         new_miss = False
-#         for i in range(lower, upper+1, 1):
-#             if i in nums:
-#                 if new_miss:
-#                     if start_miss == end_miss:
-#                         missing.append(str(start_miss))
-#                     else:
-#                         missing.append(str(start_miss) + "->" + str(end_miss))
-#                     new_miss = False
-#             else:    
-#                 if not new_miss:
-#                     start_miss = i
-#                     end_miss = i
-#                     new_miss = True
-#                 else:
-#                     end_miss += 1
-        
-#         if new_miss:
-#             if start_miss == end_miss:
-#                 missing.append(str(start_miss))
-#             else:
-#                 missing.append(str(start_miss) + "->" + str(end_miss))
-        
-#         return missing
         missing = []
     
         if not nums:
@@ -37,11 +10,10 @@ class Solution:
                 missing.append(str(lower) + "->" + str(upper))
             return missing
             
-        if nums[0] - lower > 0:
-            if nums[0] - lower > 1:
-                missing.append(str(lower) + "->" + str(nums[0]-1))
-            else:
-                missing.append(str(lower))
+        if nums[0] - lower > 1:
+            missing.append(str(lower) + "->" + str(nums[0]-1))
+        elif nums[0] - lower == 1:
+            missing.append(str(lower))
     
         i = 0
         while i < len(nums)-1 and len(nums) > 1:
