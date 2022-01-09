@@ -1,6 +1,15 @@
 class Solution:
     def isRobotBounded(self, instructions: str) -> bool:
         
+        # Main idea: 
+        # If at the end of one cycle, the robot is
+        # either at (0, 0), or not facing north
+        # then it is bounded by a circle
+        
+        # This code could have been a lot less,
+        # and run faster if I used some nifty modulus
+        # operations. See solution for more details
+        
         def nextDirection(cur, ins):
             if cur == "north":
                 if ins == "L": return "east"
