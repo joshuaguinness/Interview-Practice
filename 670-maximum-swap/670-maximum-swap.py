@@ -27,7 +27,7 @@ class Solution:
                 # Find the max of the rest of the array
                 # iterate backwards so it finds the last max
                 for j in range(len(nums)-1, i, -1):
-                    if int(nums[j]) > int(local_max):
+                    if (int(nums[j]) > int(local_max)):
                         local_max = nums[j]
                         max_index = j
                 break
