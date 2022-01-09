@@ -10,16 +10,33 @@ class Solution:
         # is the length of the substring. See solution for
         # more details
         
+        # Using groups, O(n) space solution
+#         result = 0
+#         groups = [1]
+        
+#         for i in range(1, len(s)):
+#             if s[i] != s[i-1]:
+#                 groups.append(1)
+#             else:
+#                 groups[-1] += 1
+        
+#         for i in range(1, len(groups)):
+#             result += min(groups[i], groups[i-1])
+            
+#         return result
+
+        # Calculating differences on fly, O(1) space solution
         result = 0
-        groups = [1]
+        prev = 0
+        curr = 1
         
         for i in range(1, len(s)):
             if s[i] != s[i-1]:
-                groups.append(1)
+                result += min(curr, prev)
+                prev = curr
+                curr = 1
             else:
-                groups[-1] += 1
-        
-        for i in range(1, len(groups)):
-            result += min(groups[i], groups[i-1])
+                curr += 1
             
-        return result
+        return result + min(prev, curr)
+    
