@@ -21,10 +21,8 @@ class Solution:
 
         # DP - right array then left array approach
         # See solution tab for more details
-        
         left = [0] * n
         left[0] = nums[0]
-        
         right = [0] * n
         right[n-1] = nums[n-1]
         
