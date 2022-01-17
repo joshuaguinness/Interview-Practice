@@ -16,6 +16,10 @@ class Solution:
                 curr_line.append(word)
                 # Adjust length remaining (+1 for the space between words)
                 l_remaining -= len(word) + 1
+                
+                # Increment i only here because here we actually
+                # added the current word to a line. Incrementing i 
+                # in the else statement will result in skipping words
                 i += 1
             
             # There is no space left on the line for the word, pack with spaces
