@@ -25,8 +25,5 @@ class Solution:
         distances = [(v[0]**2 + v[1]**2, i) for i, v in enumerate(points)]
         heapq.heapify(distances)
 
-        # Get the k shortest distances
-        shortest = heapq.nsmallest(k, distances)
-
-        # Return the points as a list
-        return [points[i[1]] for i in shortest]
+        # Return the points as a list from the k shortest distances
+        return [points[i[1]] for i in heapq.nsmallest(k, distances)]
